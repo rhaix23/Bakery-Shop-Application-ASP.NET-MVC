@@ -1,0 +1,16 @@
+﻿@model Product;
+
+<div class="col-lg-4 col-md-6 mb-4">
+    <a class="card d-flex flex-column" asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id">
+        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+            <img src="@Model.ImageUrl" class="product-img" />
+        </div>
+        <div class="card-body text-center">
+            <h5 class="card-title mb-3 fs-6">@Model.Name</h5>
+            <h6 class="fs-5">@Model.Price.ToString("c")</h6>
+        </div>
+        <div class="card-footer m-0 border-0 p-0">
+            <a class="btn btn-secondary w-100" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.Id">+ Add to cart</a>
+        </div>
+    </a>
+</div>

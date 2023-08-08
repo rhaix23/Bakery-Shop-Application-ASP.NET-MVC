@@ -1,0 +1,49 @@
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .carousel-item img {
+        height: 576px; 
+        object-fit: cover;
+    }
+</style>
+
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner rounded">
+        <div class="carousel-item active" data-bs-interval="5000">
+            <img src="https://res.cloudinary.com/dtyzbmtlz/image/upload/v1685289947/swapnil-dwivedi-Nl8Oa6ZuNcA-unsplash_so866i.jpg" class="d-block w-100" alt="carousel image 1">
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+            <img src="https://res.cloudinary.com/dtyzbmtlz/image/upload/v1685289951/aneta-voborilova-mlcm6qi9Bu8-unsplash_pluvp7.jpg" class="d-block w-100" alt="carousel image 2">
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+            <img src="https://res.cloudinary.com/dtyzbmtlz/image/upload/v1685289951/david-holifield-kPxsqUGneXQ-unsplash_lmfmo0.jpg" class="d-block w-100" alt="carousel image 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+<div>
+    <div class="container py-5">
+        <h4 class="mt-2 text-center"><strong>Cakes of the Week</strong></h4>
+        <h5 class="text-center mb-5">Enjoy a weekly selection of our favorite cakes</h5>
+
+        <div class="row">
+            @foreach (var product in Model.ProductOfTheWeek)
+            {
+                <partial name="_ProductCard" model="product" />
+            }
+        </div>
+    </div>
+</div>

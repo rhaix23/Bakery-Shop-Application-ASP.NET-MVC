@@ -1,0 +1,42 @@
+﻿<div class="my-5">
+	<h3 class="mb-4">
+		Enter your search query
+	</h3>
+	<input id="productName" type="text" />
+	<button id="searchButton" class="btn btn-secondary">Search</button>
+</div>
+
+<table id="productsTable" cellpadding="0" cellspacing="0">
+	<tbody></tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchButton").click(function () {
+            var searchQuery = $.trim($("#productName").val());
+            $("table tbody").html("");
+            $.ajax({
+                type: "POST",
+                url: "/api/Search",
+                data: "\"" + searchQuery + "\"",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (products) {
+                    var table = $("#productsTable");
+                    table.find("tr:not(:first)").remove();
+                    $.each(products, function (i, product) {
+                        $("tbody").append($("<tr>"));
+                        appendElement = $("tbody tr").last();
+                        appendElement.append($("<td>").html('<img class="product-img" src=' + product.imageUrl + '>'));
+                        appendElement.append($("<td>").html('<a class="mb-3 fs-6 mx-4" href="/product/details/' + product.id + '">' + product.name + '</a>'));
+                        appendElement.append($("<td>").html(product.price));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr)
+                }
+            });
+        });
+    });
+</script>

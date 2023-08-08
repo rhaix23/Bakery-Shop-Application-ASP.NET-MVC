@@ -1,0 +1,19 @@
+﻿@model BakeryApplication.ViewModels.ProductListViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Patrick's Bakery</title>
+</head>
+<body>
+	<h1 class="mt-4 mb-4">Cakes</h1>
+	<div class="row">
+		@foreach (var product in Model.Products)
+		{
+			<partial name="_ProductCard" model="product" />
+		}
+	</div>
+</body>
+</html>
